@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Weather App</title>
+    
+    <link rel="stylesheet" href="https://jsdelivr.net">
+</head>
+<body>
+    <main class="container" style="max-width: 600px; margin-top: 50px;">
+        <h2>🌤️ Python Weather App</h2>
+        
+        <form method="POST">
+            <input type="text" name="city" placeholder="Enter city name (e.g., London, Tokyo)" required>
+            <button type="submit">Get Weather</button>
+        </form>
+
+        
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+
+        
+        {% if weather %}
+            <article>
+                <h3>Weather in {{ weather.name }}, {{ weather.sys.country }}</h3>
+                <p><strong>Temperature:</strong> {{ weather.main.temp }}°C</p>
+
+                <p><strong>Condition:</strong> {{ weather.weather[0].description | capitalize }}</p>
+                <p><strong>Humidity:</strong> {{ weather.main.humidity }}%</p>
+                <p><strong>Wind Speed:</strong> {{ weather.wind.speed }} m/s</p>
+                <p><strong>Time: </strong> {{time}}</p>
+            </article>
+        {% endif %}
+    </main>
+</body>
+</html>
